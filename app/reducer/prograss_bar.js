@@ -1,6 +1,6 @@
 import R from 'ramda'
 import createReducer from 'create-reducer-map'
-import { SET_PROGRESS_BAR } from '../Constants/constants'
+import { SET_PROGRESS_BAR } from '../constants/constants'
 
 // action
 export const setProgressBar = (amount) => ({ type: SET_PROGRESS_BAR, payload: amount })

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Modal, Button } from 'react-bootstrap'
-import { HIDE_POKEMON } from '../Constants/constants'
+import { HIDE_POKEMON } from '../constants/constants'
 
 class ShowPokemon extends Component {
   close = () => this.props.dispatch({ type: HIDE_POKEMON })

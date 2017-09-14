@@ -1,22 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import "regenerator-runtime/runtime";
+import "regenerator-runtime/runtime"
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
-import { Provider } from 'react-redux';
+import { Provider } from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
 import pokemons from './reducer/pokemons'
 import types from './reducer/types'
 import prograss_bar from './reducer/prograss_bar'
 import pagination from './reducer/pagination'
 import App from './components/App'
-import { watchAsync } from './Middleware'
+import { watchAsync } from './middleware'
 
 const sagaMiddleware = createSagaMiddleware()
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
   combineReducers({ pokemons, types, prograss_bar, pagination }),
-  composeEnhancers(applyMiddleware(sagaMiddleware))
+  applyMiddleware(sagaMiddleware)
 )
 
 sagaMiddleware.run(watchAsync)

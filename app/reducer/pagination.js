@@ -1,6 +1,6 @@
 import R from 'ramda'
 import createReducer from 'create-reducer-map'
-import { SET_PAGE, SET_PAGE_SIZE } from '../Constants/constants'
+import { SET_PAGE, SET_PAGE_SIZE } from '../constants/constants'
 
 // actions
 export const setPageSize = (pageSize) => ({ type: SET_PAGE_SIZE, payload: pageSize }) 
