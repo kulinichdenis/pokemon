@@ -3,11 +3,12 @@ import { connect } from 'react-redux'
 import ReactTable from 'react-table'
 import { Modal, ProgressBar } from 'react-bootstrap'
 import R from 'ramda'
-import { updatePokemons } from '../Middleware/saga'
-import { SHOW_POKEMON, UPDATE_POKEMONS } from '../Constants/constants'
+import { updatePokemons } from '../middleware/saga'
+import { SHOW_POKEMON, UPDATE_POKEMONS } from '../constants/constants'
 import { setPageSize } from '../reducer/pagination' 
 import { loadPokemons, startLoadPokemons, showPokemon } from '../reducer/pokemons' 
 import ShowPokemon from './ShowPokemon'
+import HandleError from './HandleError'
 import { capitalize } from '../helpers/helpers'
 import 'react-table/react-table.css'
 import '../style/style.scss'
@@ -70,6 +71,7 @@ class App extends Component {
     }]
     return (
       <div>
+        <HandleError />
         <ShowPokemon />
         <Modal show={loading}>
           <ProgressBar style={{ margin: 0 }} now={prograss_bar} label={`Completed ${prograss_bar}%`} />

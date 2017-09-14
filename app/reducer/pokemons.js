@@ -1,6 +1,8 @@
 import R from 'ramda'
 import createReducer from 'create-reducer-map'
-import { LOADING_POKEMONS, START_LOAD_POKEMONS, SET_ALL_POKEMONS, SHOW_POKEMON, HIDE_POKEMON, ADD_POKEMONS } from '../Constants/constants'
+import { LOADING_POKEMONS, START_LOAD_POKEMONS,
+  SET_ALL_POKEMONS, SHOW_POKEMON, HIDE_POKEMON,
+  ADD_POKEMONS, HANDLE_ERROR, HIDE_ERROR } from '../constants/constants'
 
 /*
   Actions
@@ -8,13 +10,14 @@ import { LOADING_POKEMONS, START_LOAD_POKEMONS, SET_ALL_POKEMONS, SHOW_POKEMON, 
 export const loadPokemons = () => ({ type: LOADING_POKEMONS })
 export const startLoadPokemons = () => ({ type: START_LOAD_POKEMONS })
 export const showPokemon = (id) => ({ type: SHOW_POKEMON, payload: id })
+export const handleError = () => ({ type: HANDLE_ERROR })
 
 /*
   Reducer
 */
 /* init */
 const defaultState = () => (
-  { value: [], loading: false, show: null, next: undefined, count: 0, current_count: 0 } 
+  { value: [], loading: false, show: null, next: undefined, count: 0, current_count: 0, error: false } 
 )
 
 
@@ -44,5 +47,7 @@ export default createReducer(defaultState(), {
     const pokemon = R.pipe(R.prop('value'), R.find(R.propEq('id', payload)))(state)
     return {...state, show: pokemon }
   },
-  [HIDE_POKEMON]: (state) => ({ ...state, show: null })
+  [HIDE_POKEMON]: (state) => ({ ...state, show: null }),
+  [HANDLE_ERROR]: () => ({...defaultState(), error: true }),
+  [HIDE_ERROR]: () => ({...defaultState(), error: false })
 })
